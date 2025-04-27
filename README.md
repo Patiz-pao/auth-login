@@ -7,8 +7,10 @@
 ## Tech Stack
 
 - **Java 21**
+- **Lombok**
 - **Spring Security**
 - **JSON Web Token (JWT)**
+- **Spring Data JPA**
 - **PostgreSQL**
 - **Swagger / OpenAPI**
 - **Docker & Docker Compose**
