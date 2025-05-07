@@ -1,4 +1,4 @@
-package com.authentication.login.Exceptions;
+package com.authentication.login.exceptions;
 
 import com.authentication.login.util.GenericResponse;
 import org.springframework.http.HttpStatus;

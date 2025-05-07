@@ -38,8 +38,8 @@ public class SecurityConfig {
         return http.csrf().disable()
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                        .requestMatchers("/user").hasAnyRole(USER_ROLE, ADMIN_ROLE)
-                        .requestMatchers("/admin","/create").hasRole(ADMIN_ROLE)
+                        .requestMatchers("/user", "/create", "/view").hasAnyRole(USER_ROLE, ADMIN_ROLE)
+                        .requestMatchers("/admin","/new_user", "/edit/{id}", "/delete/{id}").hasRole(ADMIN_ROLE)
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

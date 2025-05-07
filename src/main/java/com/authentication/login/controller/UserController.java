@@ -50,8 +50,7 @@ public class UserController {
         return response;
     }
 
-
-    @PostMapping("/create")
+    @PostMapping("/new_user")
     @Operation(
             summary = "Create User or Admin",
             description = "Create user || admin",
