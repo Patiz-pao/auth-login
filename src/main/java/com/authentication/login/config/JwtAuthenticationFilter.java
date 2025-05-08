@@ -1,5 +1,9 @@
 package com.authentication.login.config;
 
+import com.authentication.login.entity.SessionToken;
+import com.authentication.login.entity.UserEntity;
+import com.authentication.login.repository.SessionTokenRepo;
+import com.authentication.login.repository.UserRepo;
 import com.authentication.login.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.io.IOException;
@@ -24,6 +28,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
 
+    private final SessionTokenRepo sessionTokenRepo;
+    private final UserRepo userRepo;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException, java.io.IOException {
@@ -37,6 +44,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String role = claims.get("role", String.class);
                 if (role == null) {
                     role = USER_ROLE;
+                }
+
+                UserEntity user = userRepo.findByUsername(username);
+                if (user == null) {
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    return;
+                }
+
+                SessionToken sessionToken = sessionTokenRepo.findById(String.valueOf(user.getId())).orElse(null);
+                if (sessionToken == null || !sessionToken.getToken().equals(token)) {
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    return;
                 }
 
                 UsernamePasswordAuthenticationToken authentication =
