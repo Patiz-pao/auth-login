@@ -1,7 +1,6 @@
 package com.authentication.login.controller;
 
 import com.authentication.login.entity.TaskEntity;
-import com.authentication.login.entity.UserEntity;
 import com.authentication.login.service.TaskService;
 import com.authentication.login.util.GenericResponse;
 import lombok.AllArgsConstructor;
@@ -29,13 +28,13 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
-    @PutMapping("/edit/{id}")
-    public GenericResponse<TaskEntity> updateTask(@PathVariable String id, @RequestBody TaskEntity updatedTask) {
-        return taskService.updateTask(id, updatedTask);
+    @PutMapping("/edit")
+    public GenericResponse<TaskEntity> updateTask(@RequestParam String taskId, @RequestBody TaskEntity updatedTask) {
+        return taskService.updateTask(taskId, updatedTask);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public GenericResponse<TaskEntity> deleteTask(@PathVariable String id) {
-        return taskService.deleteTask(id);
+    @DeleteMapping("/delete")
+    public GenericResponse<TaskEntity> deleteTask(@RequestParam String taskId) {
+        return taskService.deleteTask(taskId);
     }
 }

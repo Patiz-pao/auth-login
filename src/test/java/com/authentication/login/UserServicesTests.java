@@ -1,8 +1,8 @@
 package com.authentication.login;
 
-import com.authentication.login.exceptions.AuthExceptions;
 import com.authentication.login.entity.RoleEntity;
 import com.authentication.login.entity.UserEntity;
+import com.authentication.login.exceptions.AuthExceptions;
 import com.authentication.login.repository.RoleRepo;
 import com.authentication.login.repository.UserRepo;
 import com.authentication.login.service.UserService;

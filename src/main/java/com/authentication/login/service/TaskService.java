@@ -1,10 +1,8 @@
 package com.authentication.login.service;
 
 import com.authentication.login.entity.TaskEntity;
-import com.authentication.login.entity.UserEntity;
 import com.authentication.login.exceptions.AuthExceptions;
 import com.authentication.login.repository.TaskRepo;
-import com.authentication.login.repository.UserRepo;
 import com.authentication.login.util.GenericResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
